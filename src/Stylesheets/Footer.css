@@ -1,0 +1,6 @@
+.Footer {
+    color: var(--light-grayish-blue);
+    text-align: center;
+    margin: 10px auto;
+    font-size: .6rem;
+}

@@ -1,0 +1,56 @@
+.todoFilters {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    transition: background-color .5s ease, color .5s ease, box-shadow .5s ease;
+    border-radius: 10px;
+    color: var(--very-dark-grayish-blue);
+    margin-top: 1rem;
+    height: 3.5rem;
+    box-shadow: 0 5px 10px #d2d3db69;
+
+
+}
+
+.todoFilters-dark {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: background-color .5s ease, color .5s ease, box-shadow .5s ease;
+    background-color: var(--very-dark-desaturated-blue);
+    border-radius: 10px;
+    color: var(--light-grayish-blue-dark-theme);
+    margin-top: 1rem;
+    height: 3.5rem;
+    box-shadow: 0 5px 10px #25273c96;
+
+
+}
+
+.all,
+.active,
+.completed {
+    cursor: pointer;
+    font-weight: bolder;
+    color: var(--dark-grayish-blue);
+}
+
+.all:hover,
+.active:hover,
+.completed:hover {
+    color: var(--very-dark-grayish-blue);
+}
+
+.todoFilters-dark>.all:hover,
+.active:hover,
+.completed:hover {
+    color: var(--light-grayish-blue-dark-theme)
+}
+
+.showingAll,
+.showingCompleted,
+.showingActive {
+    color: var(--bright-blue);
+    cursor: pointer;
+}

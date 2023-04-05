@@ -1,0 +1,35 @@
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    border-radius: 10px;
+    color: var(--very-dark-grayish-blue);
+    transition: background-color .5s ease, color .5s ease, box-shadow .5s ease;
+    box-shadow: 0 5px 10px #d2d3db69;
+
+}
+
+.tasks-container-dark {
+    background-color: var(--very-dark-desaturated-blue);
+    border-radius: 10px;
+    color: var(--light-grayish-blue-dark-theme);
+    transition: background-color .5s ease, color .5s ease, box-shadow .5s ease;
+    box-shadow: 0 5px 10px #25273c96;
+
+
+
+}
+
+.items-left-container {
+    display: flex;
+    height: 3.5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.clear-completed {
+    cursor: pointer;
+    color: var(--light-grayish-blue-dark-theme);
+}
