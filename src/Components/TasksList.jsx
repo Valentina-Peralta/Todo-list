@@ -154,8 +154,8 @@ function TasksList({ theme }) {
             return task
         })
         setTasks(importantTasks)
-        setAllTasks(importantTasks)
-    }
+/*         setAllTasks(importantTasks)
+ */    }
     const [newTaskPriority, setNewTaskPriority] = useState(true)
     const setTaskPriority = () => {
 
