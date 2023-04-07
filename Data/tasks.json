@@ -1,0 +1,40 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "text": "Complete online JavaScript course",
+            "completed": true,
+            "priority": "low"
+        },
+        {
+            "id": 2,
+            "text": "Jog around the park 3x",
+            "completed": false,
+            "priority": "low"
+        },
+        {
+            "id": 3,
+            "text": "10 minutes meditation",
+            "completed": false,
+            "priority": "low"
+        },
+        {
+            "id": 4,
+            "text": "Read for 1 hour",
+            "completed": false,
+            "priority": "low"
+        },
+        {
+            "id": 5,
+            "text": "Pick up groceries",
+            "completed": false,
+            "priority": "low"
+        },
+        {
+            "id": 6,
+            "text": "Complete Todo App on Frontend Mentor",
+            "completed": false,
+            "priority": "low"
+        }
+    ]
+}

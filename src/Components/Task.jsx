@@ -4,7 +4,7 @@ import '../Stylesheets/Task.css'
 function Task({ id, text, completed, completeTask, deleteTask, theme, setPriorityButton, priority }) {
 
     return (
-        <div className={completed ? 'task-container complete' : 'task-container'}>
+        <div className={completed ? 'task-container complete' : 'task-container'} style={{ backgroundColor: priority === 'high' ? '#bf58f31c' : undefined }}>
             <div className='task-text-container'
                 onClick={() => completeTask(id)}
             >

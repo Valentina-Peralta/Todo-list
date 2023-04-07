@@ -16,7 +16,7 @@ function TasksList({ theme }) {
         id: 2,
         text: 'Jog around the park 3x',
         completed: false,
-        priority: 'high'
+        priority: 'low'
 
     },
     {
@@ -49,6 +49,13 @@ function TasksList({ theme }) {
     }
     ])
 
+    /*  useEffect(
+         () => {
+             fetch('http://localhost:3000/tasks')
+                 .then(response => response.json())
+                 .then(tasks => setTasks(tasks))
+         }, []
+     ) */
     //tasks: visible tasks
     //allTasks: active+completed
     const [allTasks, setAllTasks] = useState(tasks)
@@ -56,6 +63,14 @@ function TasksList({ theme }) {
     const [filter, setFilter] = useState('all')
     const [inputValue, setInputValue] = useState()
 
+    const sortTasks = () => {
+        setTasks(prevTasks => {
+            const highPriorityTasks = prevTasks.filter(task => task.priority === 'high')
+            const lowPriorityTasks = prevTasks.filter(task => task.priority === 'low')
+            return [...highPriorityTasks, ...lowPriorityTasks]
+
+        })
+    }
     const addTask = task => {
         if (task.text.trim()) {
             task.text = task.text.trim()
@@ -67,7 +82,7 @@ function TasksList({ theme }) {
             setAllTasks(newAllTasks)
 
         }
-
+        sortTasks()
 /*         setInputValue('')
  */    }
 
@@ -80,21 +95,21 @@ function TasksList({ theme }) {
 
 
     const deleteTask = id => {
-        const notDeletedTask = allTasks.filter(task => task.id !== id)
-        setAllTasks(notDeletedTask);
+        const notDeletedTasks = allTasks.filter(task => task.id !== id)
+        setAllTasks(notDeletedTasks);
 
         if (filter === 'all') {
-            setTasks(notDeletedTask)
+            setTasks(notDeletedTasks)
             const activeTasks = tasks.filter(task => task.completed === false)
             setItemsLeft(activeTasks.length)
         }
         if (filter === 'active') {
-            setTasks(notDeletedTask.filter(task => task.completed === false))
+            setTasks(notDeletedTasks.filter(task => task.completed === false))
         }
         if (filter === 'completed') {
-            setTasks(notDeletedTask.filter(task => task.completed === true))
+            setTasks(notDeletedTasks.filter(task => task.completed === true))
         }
-        const activeTasks = notDeletedTask.filter(task => task.completed === false)
+        const activeTasks = notDeletedTasks.filter(task => task.completed === false)
         setItemsLeft(activeTasks.length)
     }
 
@@ -115,6 +130,8 @@ function TasksList({ theme }) {
         if (filter === 'completed') {
             setTasks(notActiveTasks)
         }
+        sortTasks()
+
     }
 
     const filterCompleted = () => {
@@ -123,6 +140,7 @@ function TasksList({ theme }) {
         setFilter('completed')
         const activeTasks = allTasks.filter(task => task.completed === false)
         setItemsLeft(activeTasks.length)
+        sortTasks()
     }
 
     const filterActive = () => {
@@ -130,6 +148,8 @@ function TasksList({ theme }) {
         setItemsLeft(activeTasks.length)
         setTasks(activeTasks)
         setFilter('active')
+        sortTasks()
+
     }
 
     const filterAll = () => {
@@ -137,6 +157,8 @@ function TasksList({ theme }) {
         setFilter('all')
         const activeTasks = allTasks.filter(task => task.completed === false)
         setItemsLeft(activeTasks.length)
+        sortTasks()
+
     }
 
     const clearCompleted = () => {
@@ -144,16 +166,36 @@ function TasksList({ theme }) {
         const allActiveTasks = allTasks.filter(task => task.completed === false)
         setTasks(activeTasks)
         setAllTasks(allActiveTasks)
+        sortTasks()
+
     }
 
     const setPriority = (id) => {
-        const importantTasks = tasks.map(task => {
+        const updatedTasks = tasks.map(task => {
             if (task.id == id) {
                 task.priority = (task.priority === 'low' ? 'high' : 'low');
             }
             return task
         })
-        setTasks(importantTasks)
+
+        /* const movedTask = updatedTasks.find(task => task.id === id)
+        if (movedTask.priority === 'high') {
+            const index = updatedTasks.indexOf(movedTask)
+
+            updatedTasks.splice(index, 1)
+            updatedTasks.unshift(movedTask)
+        } else {
+            const index = updatedTasks.indexOf(movedTask)
+
+            updatedTasks.splice(index, 1)
+            updatedTasks.push(movedTask)
+
+        } */
+        setTasks(updatedTasks)
+        sortTasks()
+
+
+
 /*         setAllTasks(importantTasks)
  */    }
     const [newTaskPriority, setNewTaskPriority] = useState(true)
@@ -174,6 +216,7 @@ function TasksList({ theme }) {
             <div className={theme === 'light' ? 'tasks-container' : 'tasks-container-dark'} >
                 {
                     tasks.map((task) =>
+
                         <Task
                             key={task.id}
                             id={task.id}
