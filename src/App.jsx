@@ -1,28 +1,20 @@
-import './App.css';
-import Footer from './Components/Footer';
-import Header from './Components/Header';
-import { useState } from 'react';
-import TasksList from './Components/TasksList';
+import { useState } from 'react'
+import './App.css'
+import Home from './Layouts/Home'
+import RootLayout from './Layouts/RootLayout'
+import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<RootLayout />}>
+      <Route index element={<Home />} />
+    </Route>
+  )
+)
 
 function App() {
-  const [theme, setTheme] = useState('light');
-  const setThemeButton = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  }
   return (
-    <div className={theme === 'light' ? 'App' : 'App-dark'}>
-      <div className='todo-container'>
-        <Header
-          handleButton={setThemeButton}
-          themeHeader={theme === 'light' ? 'light' : 'dark'} />
-        <TasksList
-          theme={theme} />
-
-      </div>
-      <Footer />
-
-    </div>
-  );
+    <RouterProvider router={router} />
+  )
 }
-
-export default App;
+export default App

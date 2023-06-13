@@ -4,6 +4,7 @@
     letter-spacing: 15px;
     font-size: 1rem;
     color: white;
+    z-index: 200;
 }
 
 .theme {

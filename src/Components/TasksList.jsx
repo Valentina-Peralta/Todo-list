@@ -49,7 +49,9 @@ function TasksList({ theme }) {
     }
     ])
 
-    /*  useEffect(
+    /* 
+    //fetch tasks from the JSON server
+    useEffect(
          () => {
              fetch('http://localhost:3000/tasks')
                  .then(response => response.json())
