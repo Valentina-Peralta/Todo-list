@@ -13,7 +13,6 @@ function Home() {
     return (
         <div className={theme === 'light' ? 'App' : 'App-dark'}>
             <div className='todo-container'>
-                <Register />
                 <Header
                     handleButton={setThemeButton}
                     themeHeader={theme === 'light' ? 'light' : 'dark'} />
